@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  const userData = useSelector((state) => state.auth.userData)
+  const [loading, setLoading] = useState(true);
+  const userData = useSelector((state) => state.auth.userData);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -16,14 +17,28 @@ export default function Home() {
         }
       } catch (error) {
         console.error("Failed to fetch Post", error);
+      } finally {
+        setLoading(false); // Set loading to false after fetching is done
       }
     };
     fetchPosts();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh] text-center px-4">
+        <Container>
+          <h1 className="text-2xl font-semibold text-gray-700">
+            Loading posts...
+          </h1>
+        </Container>
+      </div>
+    );
+  }
+
   if (posts.length === 0) {
     return (
-     <div className="flex items-center justify-center min-h-[60vh] text-center px-4">
+      <div className="flex items-center justify-center min-h-[60vh] text-center px-4">
         <Container>
           <h1 className="text-2xl font-semibold text-gray-700">
             {!userData ? "Login to read posts" : "No posts available"}
@@ -39,13 +54,11 @@ export default function Home() {
   }
 
   return (
-     <div className="py-10 bg-gray-100 min-h-screen">
+    <div className="py-10 bg-gray-100 min-h-screen">
       <Container>
         {/* Heading */}
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">
-            Latest Posts
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-800">Latest Posts</h1>
         </div>
 
         {/* Grid */}

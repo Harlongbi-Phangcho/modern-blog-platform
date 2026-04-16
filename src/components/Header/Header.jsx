@@ -93,7 +93,7 @@ export default function Header() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div
-            className={`md:hidden w-full max-w-[200px] absolute right-4 top-4 z-5 rounded-xl shadow p-4
+            className={`md:hidden w-full max-w-[300px] absolute right-4 top-4 z-5 rounded-xl shadow p-4
   bg-black/10 backdrop-blur-md`}
           >
             <ul className="flex flex-col mt-5 gap-3">

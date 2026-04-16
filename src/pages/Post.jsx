@@ -11,7 +11,7 @@ function Post() {
 
   const userData = useSelector((state) => state.auth.userData);
 
-  const isAuthor = post && userData ? post.userId === userData.$id : false;
+  const isAuthor = post && userData && post.userId === userData.$id
 
   useEffect(() => {
     if (slug) {
@@ -61,7 +61,7 @@ function Post() {
         </div>
 
         {/* Author Actions */}
-        {isAuthor && (
+        {userData && isAuthor && (
           <div className="absolute top-4 right-4 flex gap-2">
             <Link to={`/edit-post/${post.$id}`}>
               <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded-lg shadow">

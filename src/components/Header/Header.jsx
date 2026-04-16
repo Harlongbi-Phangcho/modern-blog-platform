@@ -40,11 +40,10 @@ export default function Header() {
   ];
   return (
     <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
-      <Container>
+      <Container className="relative">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
-            <Logo width="70px" />
-         
+          <Logo width="70px" />
 
           {/* Desktop menu */}
           <ul className="hidden md:flex items-center gap-3">
@@ -53,7 +52,7 @@ export default function Header() {
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className={`px-4 py-2 text-sm rounded-lg transition
+                    className={`px-4 py-2 text-sm rounded-lg transition cursor-pointer
                         ${
                           location.pathname === item.slug
                             ? "bg-blue-100 text-blue-600"
@@ -77,18 +76,27 @@ export default function Header() {
           {/* Hamburger Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-1"
+            className="md:hidden flex items-center justify-center z-10 w-10 h-10"
           >
-            <span className="w-6 h-0.5 bg-gray-800"></span>
-            <span className="w-6 h-0.5 bg-gray-800"></span>
-            <span className="w-6 h-0.5 bg-gray-800"></span>
+            {menuOpen ? (
+              <span className="text-3xl text-gray-800 hover:text-red-500">&times;</span>
+            ) : (
+              <div className="flex flex-col gap-1">
+                <span className="w-6 h-0.5 bg-gray-800"></span>
+                <span className="w-6 h-0.5 bg-gray-800"></span>
+                <span className="w-6 h-0.5 bg-gray-800"></span>
+              </div>
+            )}
           </button>
         </nav>
 
         {/* Mobile Menu */}
         {menuOpen && (
-          <div className="md:hidden mt-2 bg-white border rounded-xl shadow p-4">
-            <ul className="flex flex-col gap-3">
+          <div
+            className={`md:hidden w-full max-w-[200px] absolute right-4 top-4 z-5 rounded-xl shadow p-4
+  bg-black/10 backdrop-blur-md`}
+          >
+            <ul className="flex flex-col mt-5 gap-3">
               {navItems.map(
                 (item) =>
                   item.active && (
@@ -98,12 +106,12 @@ export default function Header() {
                           navigate(item.slug);
                           setMenuOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-2 rounded-lg transition
-                          ${
-                            location.pathname === item.slug
-                              ? "bg-blue-100 text-blue-600"
-                              : "text-gray-700 hover:bg-blue-50"
-                          }`}
+                        className={`w-full text-left px-4 py-2 rounded-lg transition  hover:text-red-500
+              ${
+                location.pathname === item.slug
+                  ? "bg-blue-100 text-blue-600"
+                  : "text-gray-700 hover:bg-white/40 hover:text-orange-500"
+              }`}
                       >
                         {item.name}
                       </button>

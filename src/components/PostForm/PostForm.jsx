@@ -55,15 +55,7 @@ function PostForm({ post }) {
           return;
         }
 
-        console.log(userData.$id)
-        console.log('final payload', {
-          title: data.title,
-          slug: data.slug,
-          content: data.content,
-          status: data.status,
-          featuredimage: file.$id,
-          userid: userData.id,
-        })
+     
 
         const dbPost = await appwriteService.createPost({
           title: data.title,

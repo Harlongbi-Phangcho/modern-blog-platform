@@ -114,7 +114,6 @@ export class Service {
         file,
       );
       
-      console.log("UPLOAD SUCCESS:", response);
       return response;
     } catch (error) {
       console.error("Failed to upload file:", error);

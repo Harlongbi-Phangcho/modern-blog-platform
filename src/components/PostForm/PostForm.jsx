@@ -71,7 +71,7 @@ function PostForm({ post }) {
           content: data.content,
           status: data.status,
           featuredimage: file.$id,
-          userid: userData.$id,
+          userid: userData.id,
         });
 
         if (dbPost) navigate(`/post/${dbPost.$id}`);

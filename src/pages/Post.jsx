@@ -11,7 +11,7 @@ function Post() {
 
   const userData = useSelector((state) => state.auth.userData);
 
-  const isAuthor = post && userData && post.userId === userData.$id
+  const isAuthor = post && userData && post.userid === userData.$id
 
   useEffect(() => {
     if (slug) {

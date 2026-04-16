@@ -27,10 +27,14 @@ function AllPost() {
     
   }, []);
 
-  if (loading) {
+ if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-[60vh] text-gray-500">
-        Loading posts...
+      <div className="flex items-center justify-center min-h-[60vh] text-center px-4">
+        <Container>
+          <h1 className="text-2xl font-semibold text-gray-700">
+            Loading posts...
+          </h1>
+        </Container>
       </div>
     );
   }

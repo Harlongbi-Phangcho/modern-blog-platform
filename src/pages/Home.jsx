@@ -7,7 +7,7 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const userData = useSelector((state) => state.auth.userData);
-  console.log(userData)
+ 
   useEffect(() => {
     const fetchPosts = async () => {
       try {

@@ -41,7 +41,7 @@ function Post() {
 
   // Comments
   useEffect(() => {
-    console.log(post)
+    
     if (post?.$id) {
       const fetchComments = async () => {
         try {

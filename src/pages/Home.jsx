@@ -7,7 +7,7 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const userData = useSelector((state) => state.auth.userData);
- 
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -23,6 +23,14 @@ export default function Home() {
     };
     fetchPosts();
   }, []);
+
+  // Sort posts by createdAt
+  const sortedPosts = [...posts].sort(
+    (a, b) => new Date(a.$createdAt) - new Date(b.$createdAt),
+  );
+
+  const oldestPost = sortedPosts[0];
+  const newestPost = sortedPosts[sortedPosts.length - 1];
 
   if (loading) {
     return (
@@ -56,6 +64,49 @@ export default function Home() {
   return (
     <div className="py-10 bg-gray-100 min-h-screen">
       <Container>
+        {/* Welcome Section */}
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold text-gray-900">
+            Welcome to Dev UI {userData?.name ? `, ${userData.name}` : ""}
+          </h1>
+          <p className="text-gray-600 mt-2">
+            A place to read, write, and share content on anything that matters
+            to you.
+          </p>
+        </div>
+
+        {/* Stats / Info Bar */}
+        <div className="mb-8 grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+          <div className="bg-white p-4 rounded-xl shadow">
+            <p className="text-xl font-semibold">{posts.length}</p>
+            <p className="text-sm text-gray-500">Total Posts</p>
+          </div>
+
+          <div className="bg-white p-4 rounded-xl shadow">
+            <p className="text-sm text-gray-500">Oldest Post</p>
+            <p className="text-md font-semibold truncate">
+              {oldestPost?.title || "N/A"}
+            </p>
+            <p className="text-xs text-gray-400">
+              {oldestPost
+                ? new Date(oldestPost.$createdAt).toLocaleDateString()
+                : ""}
+            </p>
+          </div>
+
+          <div className="bg-white p-4 rounded-xl shadow">
+            <p className="text-sm text-gray-500">Newest Post</p>
+            <p className="text-md font-semibold truncate">
+              {newestPost?.title || "N/A"}
+            </p>
+            <p className="text-xs text-gray-400">
+              {newestPost
+                ? new Date(newestPost.$createdAt).toLocaleDateString()
+                : ""}
+            </p>
+          </div>
+        </div>
+
         {/* Heading */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Latest Posts</h1>

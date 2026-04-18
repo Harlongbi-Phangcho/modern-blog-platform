@@ -15,7 +15,7 @@ export class Service {
     this.bucket = new Storage(this.client);
   }
 
-  async createPost({ slug, title, content, featuredimage, status, userid }) {
+  async createPost({ slug, title, content, featuredimage, status, userid, username }) {
     try {
       return await this.table.createRow(
         conf.appwriteDatabaseId,
@@ -27,6 +27,7 @@ export class Service {
           featuredimage,
           status,
           userid,
+          username,
         },
       );
     } catch (error) {
@@ -48,7 +49,7 @@ export class Service {
       return true;
     } catch (error) {
       console.error("deletePost error:", error);
-     
+
       return false;
     }
   }
@@ -65,8 +66,7 @@ export class Service {
       );
     } catch (error) {
       console.error("getPost error:", error);
-       return false;
-     
+      return false;
     }
   }
 
@@ -79,7 +79,7 @@ export class Service {
       );
     } catch (error) {
       console.error("getPosts error:", error);
-      
+
       return false;
     }
   }
@@ -106,6 +106,7 @@ export class Service {
     }
   }
 
+  // File
   async uploadFile(file) {
     try {
       const response = await this.bucket.createFile(
@@ -113,11 +114,11 @@ export class Service {
         ID.unique(),
         file,
       );
-      
+
       return response;
     } catch (error) {
       console.error("Failed to upload file:", error);
-     throw error;
+      throw error;
     }
   }
   async deleteFile(fileId) {
@@ -136,6 +137,59 @@ export class Service {
       return this.bucket.getFileView(conf.appwriteBucketId, fileId);
     } catch (error) {
       console.error("Failed to view file:", error);
+    }
+  }
+
+  // CommentsCollection
+  async createComments({ content, postid, userid, username }) {
+    try {
+      return await this.table.createRow(
+        conf.appwriteDatabaseId,
+        conf.appwriteCommentsTableId,
+        ID.unique(),
+        {
+          content,
+          postid,
+          userid,
+          username,
+        },
+      );
+    } catch (error) {
+      console.error("createComment error:", error);
+      throw error;
+    }
+  }
+
+  async getComment( postid) {
+    if (!postid) {
+      throw new Error("Post ID is required to get comments");
+    }
+    try {
+      return await this.table.listRows(
+        conf.appwriteDatabaseId,
+        conf.appwriteCommentsTableId,
+        [Query.equal("postid", postid), Query.orderDesc("$createdAt")],
+      );
+    } catch (error) {
+      console.error("getComment error:", error);
+      throw error;
+    }
+  }
+
+  async deleteComment(commentId) {
+    if (!commentId) {
+      throw new Error("Comment ID is required for delete");
+    }
+    try {
+      await this.table.deleteRow(
+        conf.appwriteDatabaseId,
+        conf.appwriteCommentsTableId,
+        commentId,
+      );
+      return true;
+    } catch (error) {
+      console.error("deleteComment error:", error);
+      throw error;
     }
   }
 }

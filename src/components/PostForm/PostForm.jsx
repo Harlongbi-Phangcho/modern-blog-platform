@@ -16,6 +16,7 @@ function PostForm({ post }) {
         title: post?.title || "",
         status: post?.status || "active",
         slug: post?.slug || "",
+        
       },
     });
 
@@ -54,8 +55,15 @@ function PostForm({ post }) {
           console.error("Image is required");
           return;
         }
-
-     
+        console.log(({
+          title: data.title,
+          slug: data.slug,
+          content: data.content,
+          status: data.status,
+          featuredimage: file.$id,
+          userid: userData.id,
+        })
+)
 
         const dbPost = await appwriteService.createPost({
           title: data.title,
@@ -64,6 +72,7 @@ function PostForm({ post }) {
           status: data.status,
           featuredimage: file.$id,
           userid: userData.id,
+          username: userData.name,
         });
 
         if (dbPost) navigate(`/post/${dbPost.$id}`);

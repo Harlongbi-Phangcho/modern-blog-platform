@@ -7,13 +7,13 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const userData = useSelector((state) => state.auth.userData);
-
+  console.log(userData)
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await appwriteService.getPosts();
         if (response) {
-          setPosts(response.rows);
+          setPosts(response?.rows || []);
         }
       } catch (error) {
         console.error("Failed to fetch Post", error);

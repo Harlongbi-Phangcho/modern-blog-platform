@@ -20,7 +20,7 @@ export class Service {
       return await this.table.createRow(
         conf.appwriteDatabaseId,
         conf.appwriteTableId,
-        slug || ID.unique(),
+        ID.unique(),
         {
           title,
           content,

@@ -107,7 +107,7 @@ function Post() {
           <img
             src={appwriteService.getFileView(post.featuredimage)}
             alt={post.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
         </div>
 

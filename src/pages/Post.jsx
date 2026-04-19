@@ -103,7 +103,7 @@ function Post() {
     <div className="flex justify-center mx-4 py-10 bg-gray-100 min-h-screen">
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg overflow-hidden relative">
         {/* Image */}
-        <div className="w-full h-78 overflow-hidden">
+        <div className="w-full  overflow-hidden p-4 rounded">
           <img
             src={appwriteService.getFileView(post.featuredimage)}
             alt={post.title}

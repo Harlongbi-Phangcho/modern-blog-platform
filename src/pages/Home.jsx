@@ -91,7 +91,7 @@ export default function Home() {
               {oldestPost
                 ? new Date(oldestPost.$createdAt).toLocaleDateString()
                 : ""}
-            </p>
+            </p> 
           </div>
 
           <div className="bg-white p-4 rounded-xl shadow">

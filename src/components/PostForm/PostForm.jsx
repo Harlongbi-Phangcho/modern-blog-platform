@@ -87,8 +87,10 @@ function PostForm({ post }) {
       return value
         .trim()
         .toLowerCase()
-        .replace(/[^a-zA-Z\d\s]+/g, "-")
-        .replace(/\s/g, "-");
+        .replace(/[^a-z0-9\s-]/g, "")   // remove unwanted chars
+        .replace(/\s+/g, "-")           // spaces → single dash
+        .replace(/-+/g, "-")            // collapse multiple dashes
+        .replace(/^-+|-+$/g, "");  
     return "";
   }, []);
 

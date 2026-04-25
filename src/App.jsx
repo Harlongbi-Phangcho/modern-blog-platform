@@ -35,7 +35,9 @@ function App() {
   return (
     <>
       <Header />
-      <Outlet />
+      <main className="min-h-[80vh] py-6 px-4 bg-[#007f5f]">
+        <Outlet />
+      </main>
       <Footer />
     </>
   );

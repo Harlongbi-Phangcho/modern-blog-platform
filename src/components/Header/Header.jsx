@@ -39,7 +39,7 @@ export default function Header() {
     },
   ];
   return (
-    <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
+    <header className="sticky top-0 z-50 bg-gray-50 border-b shadow-sm">
       <Container className="relative">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -56,7 +56,7 @@ export default function Header() {
                         ${
                           location.pathname === item.slug
                             ? "bg-blue-100 text-blue-600"
-                            : "text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                            : "text-[#007f5f] hover:bg-blue-100 hover:text-[#38a3a5] hover:shadow-md"
                         }`}
                   >
                     {item.name}

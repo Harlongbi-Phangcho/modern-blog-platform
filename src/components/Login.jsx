@@ -43,7 +43,7 @@ function Login() {
     }
   };
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+    <div className="flex w-full max-w-xl mx-auto items-center justify-center min-h-[80vh] rounded bg-gray-100 px-4">
       <div className="w-full max-w-md bg-gray-100 rounded-xl p-10 border border-black/10">
         {/* Logo */}
         <div className="flex justify-center mb-4">
@@ -51,7 +51,7 @@ function Login() {
         </div>
 
         {/* Heading */}
-        <h2 className="text-center text-2xl font-bold text-gray-800">
+        <h2 className="text-center text-2xl font-bold text-[#007f5f]">
           Sign in to your account
         </h2>
 

@@ -107,10 +107,10 @@ function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <div className="flex justify-center py-10 bg-gray-100 min-h-screen">
+    <div className="flex justify-center py-2 px-2 sm:py-10 sm:px-10 bg-gray-100/60 rounded min-h-screen">
     <form
       onSubmit={handleSubmit(submit)}
-      className="w-full max-w-5xl bg-white rounded-2xl shadow-lg p-6 md:p-8"
+      className="w-full max-w-5xl bg-white rounded shadow-lg p-6 md:p-8"
     >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         

@@ -39,7 +39,7 @@ export default function Header() {
     },
   ];
   return (
-    <header className="sticky top-0 z-50 bg-gray-50/45 border-b shadow-sm backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-gray-50/40 border-b shadow-sm backdrop-blur-md">
       <Container className="relative">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -94,7 +94,7 @@ export default function Header() {
         {menuOpen && (
           <div
             className={`md:hidden w-full max-w-[300px] absolute right-4 top-4 z-5 rounded-xl shadow p-4
-  bg-black/10 backdrop-blur-md`}
+  bg-gray-100/90 backdrop-blur-md border border-gray-200/70`}
           >
             <ul className="flex flex-col mt-5 gap-3">
               {navItems.map(

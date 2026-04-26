@@ -56,7 +56,7 @@ function AllPost() {
     );
   }
   return (
-    <div className="py-10 bg-gray-100 min-h-screen">
+    <div className="py-10 bg-gray-100/60 rounded min-h-screen">
       <Container>
         {/* Heading */}
         <div className="mb-6">

@@ -145,7 +145,7 @@ export default function Home() {
   // DASHBOARD (LOGGED IN)
   
   return (
-    <div className="py-10 bg-gray-100 min-h-screen">
+    <div className="py-10 bg-gray-100/60 rounded min-h-screen">
       <Container>
         {/* Welcome */}
         <div className="mb-8 text-center">

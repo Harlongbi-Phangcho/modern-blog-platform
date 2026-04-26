@@ -27,24 +27,21 @@ export default function Home() {
     fetchPosts();
   }, []);
 
-  // ✅ Sort newest first
-  const sortedPosts = [...posts].sort(
-    (a, b) => new Date(b.$createdAt) - new Date(a.$createdAt)
-  );
+  // Sort newest first
+  const sortedPosts = [...posts].sort((a, b) => new Date(b.$createdAt) - new Date(a.$createdAt));
 
   const newestPost = sortedPosts[0];
   const oldestPost = sortedPosts[sortedPosts.length - 1];
 
-  // =========================
-  // 🚀 LANDING PAGE (NOT LOGGED IN)
-  // =========================
+
+  // LANDING PAGE (NOT LOGGED IN)
   if (!userData) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen rounded bg-gray-50/48">
         {/* HERO */}
-        <div className="text-center py-20 px-4">
+        <div className="text-center py-10 md:py-20 px-2 md:px-4">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Share Your Ideas with DevUI 🚀
+            Share Your Ideas with <span className="text-[#007f5f]">Dev</span><span className="text-[#38a3a5]">UI</span>
           </h1>
 
           <p className="text-gray-600 max-w-2xl mx-auto mb-6">
@@ -55,14 +52,14 @@ export default function Home() {
           <div className="flex justify-center gap-4">
             <Link
               to="/signup"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg"
+              className="bg-[#007f5f] hover:bg-blue-700 text-white px-6 py-3 rounded-lg"
             >
               Get Started
             </Link>
 
             <Link
               to="/login"
-              className="border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-100"
+              className="border border-gray-300 px-6 py-3 rounded-lg bg-[#38a3a5] hover:bg-gray-100"
             >
               Sign In
             </Link>
@@ -73,21 +70,21 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-4 pb-20">
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-xl shadow">
-              <h3 className="font-semibold text-lg mb-2">✍️ Write Posts</h3>
+              <h3 className="font-semibold text-[#007f5f] text-lg mb-2">✍️ Write Posts</h3>
               <p className="text-gray-600 text-sm">
                 Create and publish your own articles with ease.
               </p>
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow">
-              <h3 className="font-semibold text-lg mb-2">💬 Engage</h3>
+              <h3 className="font-semibold text-[#38a3a5] text-lg mb-2">💬 Engage</h3>
               <p className="text-gray-600 text-sm">
                 Comment and interact with other users.
               </p>
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow">
-              <h3 className="font-semibold text-lg mb-2">🖼️ Media Support</h3>
+              <h3 className="font-semibold text-[#007f5f] text-lg mb-2">🖼️ Media Support</h3>
               <p className="text-gray-600 text-sm">
                 Upload images and enhance your content.
               </p>
@@ -113,9 +110,9 @@ export default function Home() {
     );
   }
 
-  // =========================
-  // 🔄 LOADING STATE
-  // =========================
+ 
+  // LOADING STATE
+ 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -126,9 +123,9 @@ export default function Home() {
     );
   }
 
-  // =========================
-  // 📭 NO POSTS
-  // =========================
+
+  // NO POSTS
+ 
   if (posts.length === 0) {
     return (
       <div className="flex justify-center min-h-[60vh] text-center px-4">
@@ -144,9 +141,9 @@ export default function Home() {
     );
   }
 
-  // =========================
-  // ✅ DASHBOARD (LOGGED IN)
-  // =========================
+ 
+  // DASHBOARD (LOGGED IN)
+  
   return (
     <div className="py-10 bg-gray-100 min-h-screen">
       <Container>

@@ -39,7 +39,7 @@ export default function Header() {
     },
   ];
   return (
-    <header className="sticky top-0 z-50 bg-gray-50 border-b shadow-sm">
+    <header className="sticky top-0 z-50 bg-gray-50/45 border-b shadow-sm backdrop-blur-md">
       <Container className="relative">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}

@@ -4,7 +4,7 @@ import { Logo } from "../index";
 
 function Footer() {
   return (
-    <footer className="bg-gray-50 border-t mt-10">
+    <footer className=" bg-gray-100/60 border-t mt-2 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           
@@ -23,7 +23,7 @@ function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wide">
+            <h3 className="text-sm font-semibold text-[#007f5f] mb-4 uppercase tracking-wide">
               Company
             </h3>
             <ul className="space-y-3">
@@ -42,7 +42,7 @@ function Footer() {
 
           {/* Support */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wide">
+            <h3 className="text-sm font-semibold text-[#38a3a5] mb-4 uppercase tracking-wide">
               Support
             </h3>
             <ul className="space-y-3">
@@ -61,7 +61,7 @@ function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-800 mb-4 uppercase tracking-wide">
+            <h3 className="text-sm font-semibold text-[#007f5f] mb-4 uppercase tracking-wide">
               Legal
             </h3>
             <ul className="space-y-3">

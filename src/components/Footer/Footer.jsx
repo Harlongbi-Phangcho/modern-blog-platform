@@ -17,7 +17,7 @@ function Footer() {
               </p>
             </div>
             <p className="mt-6 text-xs text-gray-500">
-              © 2026 DevUI. All rights reserved.
+              © 2026 StackStories. All rights reserved.
             </p>
           </div>
 

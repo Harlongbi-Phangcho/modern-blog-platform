@@ -60,8 +60,8 @@ export default function Header() {
                     className={`px-4 py-2 text-sm rounded-lg transition cursor-pointer transition-all duration-200
                         ${
                           location.pathname === item.slug
-                            ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow"
-                            : "text-gray-700 hover:bg-purple-500 hover:text-white hover:shadow-md"
+                            ? "bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow"
+                            : "text-gray-700 hover:bg-indigo-500 hover:text-white hover:shadow-md"
                         }`}
                   >
                     {item.name}
@@ -116,8 +116,8 @@ export default function Header() {
                         className={`w-full text-left px-4 py-2 rounded-lg transition cursor-pointer transition-all duration-200
               ${
                 location.pathname === item.slug
-                  ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow"
-                  : "text-gray-700 hover:bg-purple-500 hover:text-white hover:shadow-md"
+                  ? "bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow"
+                  : "text-gray-700 hover:bg-indigo-500 hover:text-white hover:shadow-md"
               }`}
                       >
                         {item.name}

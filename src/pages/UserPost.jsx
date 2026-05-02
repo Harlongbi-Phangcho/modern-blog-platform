@@ -17,7 +17,7 @@ function UserPost() {
     }
     const fetchPosts = async () => {
       try {
-        const response = await appwriteService.getUserPosts([userData.id]);
+        const response = await appwriteService.getUserPosts(userData.id);
 
         if (response) {
           setPosts(response.rows);
@@ -64,8 +64,8 @@ function UserPost() {
   return (
     <div className="py-5 bg-gray-100/60 rounded min-h-screen">
       <Container>
-        <div className="flex justify-between items-center mb-8">
-          <div>
+        <div className="flex justify-between flex-wrap items-center mb-8">
+          <div className="mb-2">
             <h1 className="text-2xl font-bold text-gray-700 mb-2">
               Your Posts
             </h1>

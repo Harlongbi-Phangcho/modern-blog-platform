@@ -15,7 +15,15 @@ export class Service {
     this.bucket = new Storage(this.client);
   }
 
-  async createPost({ slug, title, content, featuredimage, status, userid, username }) {
+  async createPost({
+    slug,
+    title,
+    content,
+    featuredimage,
+    status,
+    userid,
+    username,
+  }) {
     try {
       return await this.table.createRow(
         conf.appwriteDatabaseId,
@@ -82,6 +90,14 @@ export class Service {
 
       return false;
     }
+  }
+
+  async getUserPosts(userid) {
+    return await this.table.listRows(
+      conf.appwriteDatabaseId,
+      conf.appwriteTableId,
+      [Query.equal("userid", userid)],
+    );
   }
 
   async updatePost(slug, { title, content, featuredimage, status }) {
@@ -160,7 +176,7 @@ export class Service {
     }
   }
 
-  async getComment( postid) {
+  async getComment(postid) {
     if (!postid) {
       throw new Error("Post ID is required to get comments");
     }

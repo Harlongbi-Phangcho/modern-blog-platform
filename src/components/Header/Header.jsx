@@ -33,6 +33,11 @@ export default function Header() {
       active: authStatus,
     },
     {
+      name: "Your Posts",
+      slug: "/your-posts",
+      active: authStatus,
+    },
+    {
       name: "Add Post",
       slug: "/add-post",
       active: authStatus,
@@ -79,7 +84,9 @@ export default function Header() {
             className="md:hidden flex items-center justify-center z-10 w-10 h-10"
           >
             {menuOpen ? (
-              <span className="text-3xl text-gray-800 hover:text-red-500">&times;</span>
+              <span className="text-3xl text-gray-800 hover:text-red-500">
+                &times;
+              </span>
             ) : (
               <div className="flex flex-col gap-1">
                 <span className="w-6 h-0.5 bg-gray-800"></span>

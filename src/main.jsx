@@ -13,7 +13,7 @@ import AllPost from "./pages/AllPost";
 import AddPost from "./pages/AddPost";
 import EditPost from "./pages/EditPost";
 import Post from "./pages/Post";
-
+import UserPost from "./pages/UserPost";
 
 const router = createBrowserRouter([
   {
@@ -29,56 +29,62 @@ const router = createBrowserRouter([
         path: "/login",
         element: (
           <AuthLayout authentication={false}>
-            <Login/>
+            <Login />
           </AuthLayout>
-        )
+        ),
       },
 
       {
         path: "/signup",
-        element:  (
+        element: (
           <AuthLayout authentication={false}>
-            <Signup/>
+            <Signup />
           </AuthLayout>
-        )
+        ),
       },
-
 
       {
         path: "/all-posts",
-        element:  (
+        element: (
           <AuthLayout authentication>
-            <AllPost/>
+            <AllPost />
           </AuthLayout>
-        )
+        ),
+      },
+      {
+        path: "/your-posts",
+        element: (
+          <AuthLayout authentication>
+            <UserPost />
+          </AuthLayout>
+        ),
       },
 
       {
         path: "/add-post",
-        element:  (
+        element: (
           <AuthLayout authentication>
-            <AddPost/>
+            <AddPost />
           </AuthLayout>
-        )
+        ),
       },
-
 
       {
         path: "/edit-post/:slug",
-        element:  (
+        element: (
           <AuthLayout authentication>
-            <EditPost/>
+            <EditPost />
           </AuthLayout>
-        )
+        ),
       },
 
       {
         path: "/post/:slug",
-        element:  (
+        element: (
           <AuthLayout authentication>
-            <Post/>
+            <Post />
           </AuthLayout>
-        )
+        ),
       },
     ],
   },

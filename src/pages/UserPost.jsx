@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
-import { Container, PostCard } from "../components";
 import { useSelector } from "react-redux";
+import { Container, PostCard } from "../components";
+import { Query } from "appwrite";
 
-function AllPost() {
+function UserPost() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const userData = useSelector((state) => state.auth.userData);
+  console.log("Fetching user posts for user ID:", userData);
 
   useEffect(() => {
+    if (!userData) {
+      return;
+    }
     const fetchPosts = async () => {
       try {
-        const response = await appwriteService.getPosts([]);
+        const response = await appwriteService.getUserPosts([userData.id]);
 
         if (response) {
           setPosts(response.rows);
         }
       } catch (error) {
-        console.error("Failed to get posts", error);
+        console.error("Failed to get user posts", error);
       } finally {
         setLoading(false);
       }
@@ -36,39 +41,32 @@ function AllPost() {
       <div className="flex items-center justify-center min-h-[60vh] text-center px-4">
         <Container>
           <h1 className="text-2xl font-semibold text-gray-700">
-            Loading posts...
+            Loading your posts...
           </h1>
         </Container>
       </div>
     );
   }
-  // empty state
+
   if (posts.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-[60vh] text-center px-4">
         <Container>
           <h1 className="text-2xl font-semibold text-gray-700">
-            {!userData ? "Login to read posts" : "No posts available"}
+            You haven't created any posts yet.
           </h1>
-          <p className="text-sm text-gray-500 mt-2">
-            {!userData
-              ? "Access your account to explore posts."
-              : "Start by creating your first post."}
-          </p>
         </Container>
       </div>
     );
   }
+
   return (
     <div className="py-10 bg-gray-100/60 rounded min-h-screen">
       <Container>
-        {/* Heading */}
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">All Posts</h1>
-        </div>
-
-        {/* Grid */}
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <h1 className="text-2xl font-semibold text-gray-700 mb-6">
+          Your Posts
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedPosts.map((post) => (
             <PostCard key={post.$id} {...post} />
           ))}
@@ -77,5 +75,4 @@ function AllPost() {
     </div>
   );
 }
-
-export default AllPost;
+export default UserPost;

@@ -44,7 +44,7 @@ export default function Header() {
     },
   ];
   return (
-    <header className="sticky top-0 z-50 bg-gray-50/40 border-b shadow-sm backdrop-blur-md">
+    <header className="sticky top-0 z-50  bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <Container className="relative">
         <nav className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -57,11 +57,11 @@ export default function Header() {
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className={`px-4 py-2 text-sm rounded-lg transition cursor-pointer
+                    className={`px-4 py-2 text-sm rounded-lg transition cursor-pointer transition-all duration-200
                         ${
                           location.pathname === item.slug
-                            ? "bg-blue-100 text-blue-600"
-                            : "text-[#007f5f] hover:bg-blue-100 hover:text-[#38a3a5] hover:shadow-md"
+                            ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow"
+                            : "text-gray-700 hover:bg-purple-500 hover:text-white hover:shadow-md"
                         }`}
                   >
                     {item.name}
@@ -84,7 +84,7 @@ export default function Header() {
             className="md:hidden flex items-center justify-center z-10 w-10 h-10"
           >
             {menuOpen ? (
-              <span className="text-3xl text-gray-800 hover:text-red-500">
+              <span className="text-3xl text-gray-700 hover:text-red-500">
                 &times;
               </span>
             ) : (
@@ -101,7 +101,7 @@ export default function Header() {
         {menuOpen && (
           <div
             className={`md:hidden w-full max-w-[300px] absolute right-4 top-4 z-5 rounded-xl shadow p-4
-  bg-gray-100/90 backdrop-blur-md border border-gray-200/70`}
+  bg-white/90 backdrop-blur-md border border-gray-200/70`}
           >
             <ul className="flex flex-col mt-5 gap-3">
               {navItems.map(
@@ -113,11 +113,11 @@ export default function Header() {
                           navigate(item.slug);
                           setMenuOpen(false);
                         }}
-                        className={`w-full text-left px-4 py-2 rounded-lg transition  hover:text-red-500
+                        className={`w-full text-left px-4 py-2 rounded-lg transition cursor-pointer transition-all duration-200
               ${
                 location.pathname === item.slug
-                  ? "bg-blue-100 text-blue-600"
-                  : "text-gray-700 hover:bg-white/40 hover:text-orange-500"
+                  ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow"
+                  : "text-gray-700 hover:bg-purple-500 hover:text-white hover:shadow-md"
               }`}
                       >
                         {item.name}

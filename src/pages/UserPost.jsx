@@ -3,6 +3,7 @@ import appwriteService from "../appwrite/config";
 import { useSelector } from "react-redux";
 import { Container, PostCard } from "../components";
 import { Query } from "appwrite";
+import { Link } from "react-router-dom";
 
 function UserPost() {
   const [posts, setPosts] = useState([]);
@@ -11,7 +12,7 @@ function UserPost() {
   console.log("Fetching user posts for user ID:", userData);
 
   useEffect(() => {
-    if (!userData) {
+    if (!userData.id) {
       return;
     }
     const fetchPosts = async () => {
@@ -61,11 +62,25 @@ function UserPost() {
   }
 
   return (
-    <div className="py-10 bg-gray-100/60 rounded min-h-screen">
+    <div className="py-5 bg-gray-100/60 rounded min-h-screen">
       <Container>
-        <h1 className="text-2xl font-semibold text-gray-700 mb-6">
-          Your Posts
-        </h1>
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-700 mb-2">
+              Your Posts
+            </h1>
+            <p className="text-sm font-semibold text-gray-500 ">
+              All your posts you've created. Sorted by latest
+            </p>
+          </div>
+
+          <Link
+            to="/add-post"
+            className="bg-indigo-500 px-3 py-2 rounded-lg text-white cursor-pointer hover:bg-blue-600"
+          >
+            + Add post
+          </Link>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedPosts.map((post) => (
             <PostCard key={post.$id} {...post} />

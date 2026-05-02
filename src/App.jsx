@@ -27,19 +27,32 @@ function App() {
         }
       } catch (error) {
         console.error("Failed to fetch userData", error);
+      } finally { 
+        setLoading(false);
       }
     };
     checkUser();
   }, []);
 
+
+    if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <p className="text-gray-500">Loading...</p>
+      </div>
+    );
+  }
+
   return (
-    <>
+  <div className="min-h-screen flex flex-col bg-gray-100">
       <Header />
-      <main className="min-h-[80vh] py-2 md:py-6 px-2 md:px-4 bg-gradient-to-r from-cyan-500 to-blue-300">
+
+      <main className="flex-grow py-4 md:py-6 px-3 md:px-6">
         <Outlet />
       </main>
+
       <Footer />
-    </>
+    </div>
   );
 }
 

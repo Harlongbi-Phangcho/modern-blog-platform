@@ -44,11 +44,11 @@ function Signup() {
         </div>
 
         {/* Heading */}
-        <h2 className="text-center text-2xl font-bold text-[#007f5f]">
+        <h2 className="text-center text-2xl font-bold text-gray-700">
           Create your account
         </h2>
 
-        <p className="mt-2 text-center text-sm text-gray-500">
+        <p className="mt-2 text-center text-sm text-gray-700">
           Already have an account?{" "}
           <Link
             to="/login"

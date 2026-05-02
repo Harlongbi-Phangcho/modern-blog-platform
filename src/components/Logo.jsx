@@ -5,8 +5,8 @@ export default function Logo({ width = "auto", className='' }) {
   return (
     <>
       <Link to="/" style={{ width }}>
-        <div className={`text-xl font-bold tracking-tight text-[#007f5f] ${className}`}>
-          Stack<span className="font-bold text-xl text-[#38a3a5]">Stories</span>
+        <div className={`text-sm font-bold tracking-tight text-purple-600 ${className}`}>
+          Stack<span className="font-bold text-xl text-purple-800">Stories</span>
         </div>
       </Link>
     </>

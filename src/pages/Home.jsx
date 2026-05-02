@@ -41,7 +41,7 @@ export default function Home() {
         {/* HERO */}
         <div className="text-center py-10 md:py-20 px-2 md:px-4">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Share Your Thoughts with <span className="text-[#007f5f]">Stack</span><span className="text-[#38a3a5]">Stories</span>
+            Share Your Thoughts with <span className="text-purple-600 text-purple-600">Stack</span><span className="text-purple-900">Stories</span>
           </h1>
 
           <p className="text-gray-600 max-w-2xl mx-auto mb-6">
@@ -52,14 +52,14 @@ export default function Home() {
           <div className="flex justify-center gap-4">
             <Link
               to="/signup"
-              className="bg-[#007f5f] hover:bg-blue-700 text-white px-6 py-3 rounded-lg"
+              className="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg transition duration-200"
             >
               Get Started
             </Link>
 
             <Link
               to="/login"
-              className="border border-gray-300 px-6 py-3 rounded-lg bg-[#38a3a5] hover:bg-gray-100"
+              className="border border-gray-300 px-6 py-3 text-white rounded-lg bg-blue-700 hover:bg-blue-800 transition duration-200"
             >
               Sign In
             </Link>
@@ -117,7 +117,7 @@ export default function Home() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <h1 className="text-2xl font-semibold text-gray-700">
-          Loading posts...
+          Loading please wait for a few sec...
         </h1>
       </div>
     );

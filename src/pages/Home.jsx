@@ -41,7 +41,7 @@ export default function Home() {
         {/* HERO */}
         <div className="text-center py-10 md:py-20 px-2 md:px-4">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Share Your Thoughts with <span className="text-purple-600 text-purple-600">Stack</span><span className="text-purple-900">Stories</span>
+            Share Your Thoughts with <span>Stack</span><span className="text-indigo-700">Stories</span>
           </h1>
 
           <p className="text-gray-600 max-w-2xl mx-auto mb-6">

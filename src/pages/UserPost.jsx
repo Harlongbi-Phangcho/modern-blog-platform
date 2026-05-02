@@ -12,7 +12,7 @@ function UserPost() {
   console.log("Fetching user posts for user ID:", userData);
 
   useEffect(() => {
-    if (!userData.id) {
+    if (!userData?.id) {
       return;
     }
     const fetchPosts = async () => {
@@ -30,7 +30,7 @@ function UserPost() {
     };
 
     fetchPosts();
-  }, []);
+  }, [userdata]);
 
   //sort newest first
   const sortedPosts = [...posts].sort(

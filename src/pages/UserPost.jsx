@@ -30,7 +30,7 @@ function UserPost() {
     };
 
     fetchPosts();
-  }, [userdata]);
+  }, [userData]);
 
   //sort newest first
   const sortedPosts = [...posts].sort(

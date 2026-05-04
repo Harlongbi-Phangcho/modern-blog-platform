@@ -17,7 +17,7 @@ function App() {
         if (userData) {
           dispatch(
             storeLogin({
-              id: userData.$id,
+              $id: userData.$id,
               email: userData.email,
               name: userData.name,
             }),

@@ -11,13 +11,14 @@ function UserPost() {
   const userData = useSelector((state) => state.auth.userData);
   console.log("Fetching user posts for user ID:", userData);
 
+
   useEffect(() => {
-    if (!userData?.id) {
+    if (!userData?.$id) {
       return;
     }
     const fetchPosts = async () => {
       try {
-        const response = await appwriteService.getUserPosts(userData.id);
+        const response = await appwriteService.getUserPosts(userData.$id);
 
         if (response) {
           setPosts(response.rows);

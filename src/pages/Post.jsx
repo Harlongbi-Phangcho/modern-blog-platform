@@ -14,7 +14,7 @@ function Post() {
   const [loadingComments, setLoadingComments] = useState(true);
 
   const userData = useSelector((state) => state.auth.userData);
-  const isAuthor = post && userData ? post.userid === userData.id : false;
+  const isAuthor = post && userData ? post.userid === userData.$id : false;
 
   // Post
   useEffect(() => {
@@ -78,7 +78,7 @@ function Post() {
       const newComment = await appwriteService.createComments({
         content: commentsText,
         postid: post.$id,
-        userid: userData.id,
+        userid: userData.$id,
         username: userData.name,
       });
 
@@ -190,7 +190,7 @@ function Post() {
                         </span>
                       </p>
 
-                      {(c.userid === userData?.id || post.userid === userData?.id) && (
+                      {(c.userid === userData?.$id || post.userid === userData?.$id) && (
                         <button
                           onClick={() => handleDeleteComment(c.$id)}
                           className="text-red-500 text-sm hover:underline"

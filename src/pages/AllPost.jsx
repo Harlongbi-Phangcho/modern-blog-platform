@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import appwriteService from "../appwrite/config";
 import { Container, PostCard } from "../components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPosts, setLoading } from "../store/postSlice";
 
 function AllPost() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const userData = useSelector((state) => state.auth.userData);
+  const dispatch = useDispatch();
+  const {posts, loading} = useSelector((state) => state.post);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      dispatch(setLoading(true));
       try {
         const response = await appwriteService.getPosts([]);
 
         if (response) {
-          setPosts(response.rows);
+          dispatch(setPosts(response.rows));
         }
       } catch (error) {
         console.error("Failed to get posts", error);
       } finally {
-        setLoading(false);
+        dispatch(setLoading(false));
       }
     };
 
@@ -48,10 +49,10 @@ function AllPost() {
       <div className="flex items-center justify-center min-h-[60vh] text-center px-4">
         <Container>
           <h1 className="text-2xl font-semibold text-gray-700">
-            {!userData ? "Login to read posts" : "No posts available"}
+            {!post.length ? "Login to read posts" : "No posts available"}
           </h1>
           <p className="text-sm text-gray-500 mt-2">
-            {!userData
+            {!posts.length
               ? "Access your account to explore posts."
               : "Start by creating your first post."}
           </p>

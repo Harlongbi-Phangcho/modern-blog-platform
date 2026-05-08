@@ -1,32 +1,37 @@
 import React, { useEffect, useState } from "react";
 import appwriteService from "../appwrite/config";
 import { Container, PostCard } from "../components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {setPosts, setLoading} from "../store/postSlice";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const userData = useSelector((state) => state.auth.userData);
+  const userData= useSelector((state) => state.auth.userData);
+  const {posts, loading} = useSelector((state) => state.post);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchPosts = async () => {
+      dispatch(setLoading(true));
       try {
         const response = await appwriteService.getPosts();
         if (response) {
-          setPosts(response?.rows || []);
+          dispatch(setPosts(response?.rows || []));
         }
       } catch (error) {
         console.error("Failed to fetch Post", error);
       } finally {
-        setLoading(false);
+        dispatch(setLoading(false));
       }
     };
 
+    if(posts.length === 0) {
+      fetchPosts();
+    }
     fetchPosts();
-  }, []);
+  }, [dispatch]);
 
+  
   // Sort newest first
   const sortedPosts = [...posts].sort((a, b) => new Date(b.$createdAt) - new Date(a.$createdAt));
 

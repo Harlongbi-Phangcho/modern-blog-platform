@@ -134,7 +134,7 @@ function Post() {
         {isAuthor && (
           <div 
           ref={menuRef}
-          className="absolute top-4 right-4 flex gap-2">
+          className="absolute top-4 right-1 flex gap-2">
             {/* 3 dot menu */}
             <button
               onClick={() => setShowMenu((prev) => !prev)}    

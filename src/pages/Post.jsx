@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import appwriteService from "../appwrite/config";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { MoreVertical } from "lucide-react";
 
 function Post() {
   const [post, setPost] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
+
+  const [showMenu, setShowMenu] = useState(false);
 
   const [comments, setComments] = useState([]);
   const [commentsText, setCommentsText] = useState("");
@@ -16,7 +19,7 @@ function Post() {
   const userData = useSelector((state) => state.auth.userData);
   const isAuthor = post && userData ? post.userid === userData.$id : false;
 
-  // Post
+  // Fetch Post
   useEffect(() => {
     if (slug) {
       const fetchPost = async () => {
@@ -39,7 +42,7 @@ function Post() {
     }
   }, [slug, navigate]);
 
-  // Comments
+  // Fetch Comments
   useEffect(() => {
     
     if (post?.$id) {
@@ -58,6 +61,23 @@ function Post() {
       fetchComments();
     }
   }, [post?.$id]);
+
+
+  // Outside Click  listener for 3 dot menu
+  const menuRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };  
+  }, [menuRef]);  
+
+
 
   const deletePost = async () => {
     try {
@@ -89,7 +109,6 @@ function Post() {
     }
   };
  
-
   const handleDeleteComment = async (commentId) => {
     try {
       await appwriteService.deleteComment(commentId);
@@ -113,18 +132,33 @@ function Post() {
 
         {/* Author Actions */}
         {isAuthor && (
-          <div className="absolute top-4 right-4 flex gap-2">
+          <div 
+          ref={menuRef}
+          className="absolute top-4 right-4 flex gap-2">
+            {/* 3 dot menu */}
+            <button
+              onClick={() => setShowMenu((prev) => !prev)}    
+              className="text-gray-700 hover:text-gray-900 focus:outline-none"
+            >
+              <MoreVertical size={20} />
+            </button>
+
+            {showMenu && (
+                <div className="absolute right-0 flex flex-col gap-2 bg-gray-400/90 rounded shadow-lg p-2">
             <Link to={`/edit-post/${post.$id}`}>
-              <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-1 rounded-lg shadow">
+              <button className="hover:text-blue-600 text-white px-4 py-1">
                 Edit
               </button>
             </Link>
             <button
               onClick={deletePost}
-              className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-lg shadow"
+              className=" hover:text-red-600 text-white px-4 py-1"
             >
               Delete
             </button>
+          </div>
+            )}
+          
           </div>
         )}
       
